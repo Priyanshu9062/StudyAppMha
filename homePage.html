@@ -1,0 +1,334 @@
+<!-- homePage.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudySync</title>
+
+    <link rel="stylesheet" href="homePage.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!-- BACKGROUND GLOW -->
+
+    <div class="bg-glow glow-1"></div>
+
+    <div class="bg-glow glow-2"></div>
+
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo-section">
+
+            <h1>StudySync</h1>
+
+            <p>UA Student Dashboard ⚡</p>
+
+        </div>
+
+
+
+        <div class="nav-right">
+
+            <div class="live-clock">
+
+                <span id="clock">00:00</span>
+
+            </div>
+
+
+            <div class="xp-wrapper">
+
+                <p>LEVEL 7 HUNTER</p>
+
+                <div class="xp-bar">
+
+                    <div class="xp-fill"></div>
+
+                </div>
+
+            </div>
+
+
+            <img
+            src="./midoriyaaa2.jpg"
+            class="profile-pic"
+            >
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero-section">
+
+        <div class="hero-left">
+
+            <h1>
+
+                PLUS ULTRA,
+                <span>Pinu ⚡</span>
+
+            </h1>
+
+            <p>
+
+                Every mission completed today makes tomorrow's version stronger.
+
+            </p>
+
+        </div>
+
+
+
+        <img
+        src="./bannerDeku.jpg"
+        class="hero-character"
+        >
+
+    </section>
+
+
+
+
+
+    <!-- MAIN GRID -->
+
+    <section class="dashboard-grid">
+
+
+
+        <!-- TIMER CARD -->
+
+        <div class="card timer-card">
+
+            <img
+            src="./midoriyaaPfp.jpg"
+            class="card-bg"
+            >
+
+            <div class="card-overlay"></div>
+
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <h2>Pomodoro Mode</h2>
+
+                    <span>⏳</span>
+
+                </div>
+
+
+                <h1 id="timer">25:00</h1>
+
+
+
+                <div class="timer-buttons">
+
+                    <button onclick="startTimer()">
+                        Start
+                    </button>
+
+                    <button onclick="pauseTimer()">
+                        Pause
+                    </button>
+
+                    <button onclick="resetTimer()">
+                        Reset
+                    </button>
+
+                </div>
+
+
+
+                <div class="custom-time">
+
+                    <input
+                    type="number"
+                    id="customMinutes"
+                    placeholder="Custom Minutes"
+                    min="1"
+                    >
+
+                    <button onclick="setCustomTimer()">
+                        Set
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- MISSIONS CARD -->
+
+        <div class="card todo-card">
+
+            <img
+            src="./todoDeku.jpg"
+            class="card-bg"
+            >
+
+            <div class="card-overlay"></div>
+
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <h2>Daily Missions</h2>
+
+                    <span>🔥</span>
+
+                </div>
+
+
+
+                <div class="todo-input">
+
+                    <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Complete today's grind..."
+                    >
+
+                    <button onclick="addTask()">
+                        Add
+                    </button>
+
+                </div>
+
+
+
+                <ul id="taskList"></ul>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- MUSIC CARD -->
+
+        <div class="card music-card">
+
+            <img
+            src="./my-hero-academia-3840x2160-20251.jpg"
+            class="card-bg"
+            >
+
+            <div class="card-overlay"></div>
+
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <h2>Anime Motivation</h2>
+
+                    <span>🎧</span>
+
+                </div>
+
+
+
+                <p class="music-name">
+
+                    Now Playing : You Say Run
+
+                </p>
+
+
+
+                <audio controls>
+
+                    <source
+                    src="./youcanrun.mp3"
+                    type="audio/mp3"
+                    >
+
+                </audio>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUOTE CARD -->
+
+        <div class="card quote-card">
+
+            <img
+            src="./quoteDeku.jpg"
+            class="card-bg"
+            >
+
+            <div class="card-overlay"></div>
+
+
+            <div class="card-content">
+
+                <div class="card-top">
+
+                    <h2>Hero Quote</h2>
+
+                    <span>⚡</span>
+
+                </div>
+
+
+
+                <p
+                class="anime-quote"
+                id="quoteText"
+                >
+
+                    "A lesson without pain is meaningless."
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+    <script src="homePage.js"></script>
+
+</body>
+
+</html>
