@@ -1,283 +1,258 @@
 
-function updateClock(){
 
-    const now = new Date();
+        /* LOADER */
 
-    let hours = now.getHours();
+        window.addEventListener("load", () => {
 
-    let minutes = now.getMinutes();
+            setTimeout(() => {
+                document.getElementById("loader").style.opacity = "0";
 
-    minutes =
-    minutes < 10 ? "0" + minutes : minutes;
+                setTimeout(() => {
+                    document.getElementById("loader").style.display = "none";
+                }, 1000);
 
-    document.getElementById("clock").innerText =
-    `${hours}:${minutes}`;
-}
-
-setInterval(updateClock, 1000);
-
-updateClock();
+            }, 1800);
+        });
 
 
+        /* CURSOR GLOW */
 
-/* =========================
-   QUOTES
-========================= */
+        const glow = document.querySelector(".cursor-glow");
 
-const quotes = [
+        document.addEventListener("mousemove", (e) => {
 
-    "A lesson without pain is meaningless.",
-
-    "Power comes in response to a need.",
-
-    "Plus Ultra!",
-
-    "Wake up to reality.",
-
-    "Hard work beats talent.",
-
-    "The future belongs to those who keep moving.",
-
-    "I have to work harder than anyone else to make it! I'll never catch up otherwise...!",
-
-    "Giving help that's not asked for... is what makes a true hero!" ,
-
-    "We'll take care of the things that you can't take care of." ,
-
-    "Stop talking. I will win. That's... what heroes do."
-
-];
+            glow.style.left = `${e.clientX}px`;
+            glow.style.top = `${e.clientY}px`;
+        });
 
 
-function changeQuote(){
+        /* LIVE CLOCK */
 
-    const randomIndex =
-    Math.floor(Math.random() * quotes.length);
+        function updateClock() {
 
-    document.getElementById("quoteText").innerText =
-    `"${quotes[randomIndex]}"`;
-}
+            const now = new Date();
 
-setInterval(changeQuote, 5000);
-
-
-
-/* =========================
-   POMODORO TIMER
-========================= */
-
-let timeLeft = 25 * 60;
-
-let timer = null;
-
-let isRunning = false;
-
-
-function updateTimerDisplay(){
-
-    let minutes = Math.floor(timeLeft / 60);
-
-    let seconds = timeLeft % 60;
-
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    document.getElementById("timer").innerText =
-    `${minutes}:${seconds}`;
-}
-
-
-function startTimer(){
-
-    if(isRunning){
-        return;
-    }
-
-    isRunning = true;
-
-    timer = setInterval(() => {
-
-        if(timeLeft > 0){
-
-            timeLeft--;
-
-            updateTimerDisplay();
-
-        }
-        else{
-
-            clearInterval(timer);
-
-            isRunning = false;
-
-            alert("MISSION COMPLETE ⚡");
+            document.getElementById("clock").innerHTML =
+                now.toLocaleTimeString();
         }
 
-    },1000);
-}
+        setInterval(updateClock, 1000);
+
+        updateClock();
 
 
-function pauseTimer(){
+        /* TYPING EFFECT */
 
-    clearInterval(timer);
+        const words = [
+            "Future Engineer",
+            "Everyday Coding",
+            "Cyber Grindset",
+            "Anime + Programming"
+        ];
 
-    isRunning = false;
-}
+        let i = 0;
+        let j = 0;
 
+        let currentWord = "";
 
-function resetTimer(){
-
-    clearInterval(timer);
-
-    isRunning = false;
-
-    timeLeft = 25 * 60;
-
-    updateTimerDisplay();
-}
+        let isDeleting = false;
 
 
-function setCustomTimer(){
+        function type() {
 
-    const customMinutes =
-    document.getElementById("customMinutes").value;
+            currentWord = words[i];
 
-    if(customMinutes === "" || customMinutes <= 0){
+            if (isDeleting) {
+                j--;
+            }
+            else {
+                j++;
+            }
+
+            document.querySelector(".typing").innerHTML =
+                currentWord.substring(0, j);
+
+            if (!isDeleting && j === currentWord.length) {
+
+                isDeleting = true;
+
+                setTimeout(type, 1200);
+
+                return;
+            }
+
+            if (isDeleting && j === 0) {
+
+                isDeleting = false;
+
+                i = (i + 1) % words.length;
+            }
+
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
+
+        type();
+
+
+        /* TILT EFFECT */
+
+        VanillaTilt.init(document.querySelectorAll(".card"), {
+
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.25
+        });
+
+
+        /* TIMER */
+
+        let time = 7200;
+
+        let timerInterval;
+
+
+        function updateTimer() {
+
+            let minutes = Math.floor(time / 60);
+
+            let seconds = time % 60;
+
+            document.getElementById("timer").innerHTML =
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+
+        function startTimer() {
+
+            clearInterval(timerInterval);
+
+            timerInterval = setInterval(() => {
+
+                if (time > 0) {
+                    time--;
+                    updateTimer();
+                }
+
+            }, 1000);
+        }
+
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+        }
+
+
+        function resetTimer() {
+
+            clearInterval(timerInterval);
+
+            time = 1500;
+
+            updateTimer();
+        }
+
+        function setCustomTimer() {
+
+            const customInput =
+                document.getElementById("customMinutes");
+
+            let minutes =
+                parseInt(customInput.value);
+
+            if (isNaN(minutes) || minutes <= 0) {
+
+                alert("Enter valid minutes");
+
+                return;
+            }
+
+            clearInterval(timerInterval);
+
+            time = minutes * 60;
+
+            updateTimer();
+
+            customInput.value = "";
+        }
+
+
+        updateTimer();
+
+
+        /* TODO */
+
+        function addTask() {
+
+            const input = document.getElementById("taskInput");
+
+            if (input.value.trim() === "") return;
+
+            const li = document.createElement("li");
+
+            li.className = "task-item";
+
+            li.innerHTML = `
+                <span>${input.value}</span>
+                <button class="delete-btn">✖</button>
+            `;
+
+            li.querySelector("span").addEventListener("click", () => {
+                li.querySelector("span").classList.toggle("completed");
+            });
+
+            li.querySelector("button").addEventListener("click", () => {
+                li.remove();
+            });
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = "";
+        }
+
+        /* LEETCODE STATS */
+
+        function fetchLeetCodeStats(){
+
+    const username =
+    document.getElementById("leetcodeUsername").value;
+
+    if(username.trim() === ""){
+
+        alert("Enter username");
+
         return;
     }
 
-    clearInterval(timer);
+    fetch(`https://leetcode-api-faisalshohag.vercel.app/${username}`)
 
-    isRunning = false;
+    .then(res => res.json())
 
-    timeLeft = customMinutes * 60;
+    .then(data => {
 
-    updateTimerDisplay();
-}
+        document.getElementById("leetcodeSolved")
+        .innerHTML = data.totalSolved;
 
-updateTimerDisplay();
+        document.getElementById("easyBar")
+        .style.width =
+        `${(data.easySolved / data.totalSolved) * 100}%`;
 
+        document.getElementById("mediumBar")
+        .style.width =
+        `${(data.mediumSolved / data.totalSolved) * 100}%`;
 
+        document.getElementById("hardBar")
+        .style.width =
+        `${(data.hardSolved / data.totalSolved) * 100}%`;
 
-/* =========================
-   TODO LIST
-========================= */
+    })
 
-const taskInput =
-document.getElementById("taskInput");
+    .catch(err => {
 
-const taskList =
-document.getElementById("taskList");
+        console.log(err);
 
-
-window.onload = function(){
-
-    loadTasks();
-}
-
-
-function addTask(){
-
-    const taskValue = taskInput.value.trim();
-
-    if(taskValue === ""){
-        return;
-    }
-
-    createTaskElement(taskValue);
-
-    saveTask(taskValue);
-
-    taskInput.value = "";
-}
-
-
-function createTaskElement(taskText){
-
-    const li = document.createElement("li");
-
-    li.classList.add("task-item");
-
-    li.innerHTML = `
-
-    <div class="task-content">
-
-        <input type="checkbox" class="check-task">
-
-        <span>${taskText}</span>
-
-    </div>
-
-    <button class="delete-btn">❌</button>
-
-    `;
-
-
-    const checkbox =
-    li.querySelector(".check-task");
-
-    const taskSpan =
-    li.querySelector("span");
-
-
-    checkbox.addEventListener("change", () => {
-
-        taskSpan.classList.toggle("completed");
-
-    });
-
-
-    li.querySelector(".delete-btn")
-    .addEventListener("click", () => {
-
-        li.remove();
-
-        removeTask(taskText);
-
-    });
-
-
-    taskList.appendChild(li);
-}
-
-
-function saveTask(task){
-
-    let tasks =
-    JSON.parse(localStorage.getItem("tasks")) || [];
-
-    tasks.push(task);
-
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
-}
-
-
-function loadTasks(){
-
-    let tasks =
-    JSON.parse(localStorage.getItem("tasks")) || [];
-
-    tasks.forEach(task => {
-
-        createTaskElement(task);
+        alert("User not found");
 
     });
 }
-
-
-function removeTask(taskToRemove){
-
-    let tasks =
-    JSON.parse(localStorage.getItem("tasks")) || [];
-
-    tasks = tasks.filter(task =>
-    task !== taskToRemove
-    );
-
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
-}
+  

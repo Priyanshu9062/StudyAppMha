@@ -1,183 +1,190 @@
-<!-- homePage.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudySync</title>
-
-    <link rel="stylesheet" href="homePage.css">
+    <title>Cyber Dashboard</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="homePage.css">
 </head>
 
 <body>
 
+    <!-- LOADER -->
 
-    <!-- BACKGROUND GLOW -->
+    <div class="loader" id="loader">
+        <h1>LOADING...</h1>
+    </div>
 
-    <div class="bg-glow glow-1"></div>
 
-    <div class="bg-glow glow-2"></div>
+    <!-- CURSOR GLOW -->
 
+    <div class="cursor-glow"></div>
 
 
     <!-- NAVBAR -->
 
     <nav class="navbar">
 
-        <div class="logo-section">
-
-            <h1>StudySync</h1>
-
-            <p>UA Student Dashboard ⚡</p>
-
+        <div class="logo">
+            <h1>MIDORIYAA OS</h1>
+            <p>Cyber Productivity Dashboard</p>
         </div>
 
 
-
         <div class="nav-right">
+            <div class="clock" id="clock"></div>
 
-            <div class="live-clock">
-
-                <span id="clock">00:00</span>
-
-            </div>
-
-
-            <div class="xp-wrapper">
-
-                <p>LEVEL 7 HUNTER</p>
-
-                <div class="xp-bar">
-
-                    <div class="xp-fill"></div>
-
-                </div>
-
-            </div>
-
-
-            <img
-            src="./midoriyaaa2.jpg"
-            class="profile-pic"
-            >
-
+            <img src="./midoriyaaa2.jpg" class="profile">
         </div>
 
     </nav>
 
 
+    <!-- HERO -->
 
-    <!-- HERO SECTION -->
-
-    <section class="hero-section">
+    <section class="hero">
 
         <div class="hero-left">
 
             <h1>
-
-                PLUS ULTRA,
-                <span>Midoriyaaa ⚡</span>
-
+                <span class="typing"></span>
             </h1>
 
             <p>
-
-                Every mission completed today makes tomorrow's version stronger.
-
+                A futuristic productivity dashboard built for coding,
+                anime, deep focus, and everyday grind.
             </p>
 
         </div>
 
 
-
-        <img
-        src="./bannerDeku.jpg"
-        class="hero-character"
-        >
+        <img src="./bannerDeku.jpg" class="hero-img">
 
     </section>
 
 
+    <!-- GRID -->
+
+    <section class="grid">
 
 
 
-    <!-- MAIN GRID -->
 
-    <section class="dashboard-grid">
+        <!-- TIMER -->
 
+        <div class="card">
 
+            <div class="card-top">
+                <h2>Focus Timer</h2>
+                <span>⏳</span>
+            </div>
 
-        <!-- TIMER CARD -->
+            <div id="timer">25:00</div>
 
-        <div class="card timer-card">
+            <div class="buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
+            </div>
 
-            <img
-            src="./midoriyaaPfp.jpg"
-            class="card-bg"
-            >
+            <div class="custom-time">
 
-            <div class="card-overlay"></div>
+                <input type="number" id="customMinutes" placeholder="Enter minutes">
 
+                <button onclick="setCustomTimer()">
+                    Set Timer
+                </button>
 
-            <div class="card-content">
-
-                <div class="card-top">
-
-                    <h2>Pomodoro Mode</h2>
-
-                    <span>⏳</span>
-
-                </div>
-
-
-                <h1 id="timer">25:00</h1>
+            </div>
 
 
-
-                <div class="timer-buttons">
-
-                    <button onclick="startTimer()">
-                        Start
-                    </button>
-
-                    <button onclick="pauseTimer()">
-                        Pause
-                    </button>
-
-                    <button onclick="resetTimer()">
-                        Reset
-                    </button>
-
-                </div>
+        </div>
 
 
+        <!-- TODO -->
 
-                <div class="custom-time">
+        <div class="card">
 
-                    <input
-                    type="number"
-                    id="customMinutes"
-                    placeholder="Custom Minutes"
-                    min="1"
-                    >
+            <div class="card-top">
+                <h2>Tasks</h2>
+                <span>📌</span>
+            </div>
 
-                    <button onclick="setCustomTimer()">
-                        Set
-                    </button>
+            <div class="todo-input">
+                <input type="text" id="taskInput" placeholder="Enter task...">
+
+                <button onclick="addTask()">Add</button>
+            </div>
+
+            <ul id="taskList"></ul>
+
+
+        </div>
+
+
+        <!-- LEETCODE -->
+        <div class="card leetcode-card">
+
+            <div class="card-top">
+                <h2>LeetCode Stats</h2>
+                <span>💻</span>
+            </div>
+
+            <div class="leetcode-search">
+
+    <input
+        type="text"
+        id="leetcodeUsername"
+        placeholder="Enter LeetCode username"
+    >
+
+    <button onclick="fetchLeetCodeStats()">
+        Search
+    </button>
+
+</div>
+
+            <div class="leetcode-profile">
+
+                <h1 id="leetcodeSolved">0</h1>
+
+                <p>Total Problems Solved</p>
+
+                <div class="leetcode-bars">
+
+                    <div class="bar-section">
+                        <label>Easy</label>
+
+                        <div class="progress">
+                            <div id="easyBar"></div>
+                        </div>
+                    </div>
+
+                    <div class="bar-section">
+                        <label>Medium</label>
+
+                        <div class="progress">
+                            <div id="mediumBar"></div>
+                        </div>
+                    </div>
+
+                    <div class="bar-section">
+                        <label>Hard</label>
+
+                        <div class="progress">
+                            <div id="hardBar"></div>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -185,145 +192,57 @@
 
         </div>
 
+        <!-- STATS -->
 
+        <div class="card">
 
+            <div class="card-top">
+                <h2>Stats</h2>
+                <span>⚡</span>
+            </div>
 
+            <div class="stats">
 
-        <!-- MISSIONS CARD -->
-
-        <div class="card todo-card">
-
-            <img
-            src="./todoDeku.jpg"
-            class="card-bg"
-            >
-
-            <div class="card-overlay"></div>
-
-
-            <div class="card-content">
-
-                <div class="card-top">
-
-                    <h2>Daily Missions</h2>
-
-                    <span>🔥</span>
-
+                <div class="stat-box">
+                    <h1>247</h1>
+                    <p>DSA</p>
                 </div>
 
-
-
-                <div class="todo-input">
-
-                    <input
-                    type="text"
-                    id="taskInput"
-                    placeholder="Complete today's grind..."
-                    >
-
-                    <button onclick="addTask()">
-                        Add
-                    </button>
-
+                <div class="stat-box">
+                    <h1>91</h1>
+                    <p>Streak</p>
                 </div>
 
+                <div class="stat-box">
+                    <h1>12h</h1>
+                    <p>Study</p>
+                </div>
 
-
-                <ul id="taskList"></ul>
+                <div class="stat-box">
+                    <h1>∞</h1>
+                    <p>Grind</p>
+                </div>
 
             </div>
 
         </div>
 
 
+        <!-- QUOTE -->
 
+        <div class="card">
 
+            <div class="card-top">
+                <h2>Anime Quote</h2>
+                <span>🔥</span>
+            </div>
 
-        <!-- MUSIC CARD -->
-
-        <div class="card music-card">
-
-            <img
-            src="./my-hero-academia-3840x2160-20251.jpg"
-            class="card-bg"
-            >
-
-            <div class="card-overlay"></div>
-
-
-            <div class="card-content">
-
-                <div class="card-top">
-
-                    <h2>Anime Motivation</h2>
-
-                    <span>🎧</span>
-
-                </div>
-
-
-
-                <p class="music-name">
-
-                    Now Playing : You Say Run
-
-                </p>
-
-
-
-                <audio controls>
-
-                    <source
-                    src="./youcanrun.mp3"
-                    type="audio/mp3"
-                    >
-
-                </audio>
-
+            <div class="quote">
+                “Power comes in response to a need,
+                not a desire.”
             </div>
 
         </div>
-
-
-
-        <!-- QUOTE CARD -->
-
-        <div class="card quote-card">
-
-            <img
-            src="./quoteDeku.jpg"
-            class="card-bg"
-            >
-
-            <div class="card-overlay"></div>
-
-
-            <div class="card-content">
-
-                <div class="card-top">
-
-                    <h2>Hero Quote</h2>
-
-                    <span>⚡</span>
-
-                </div>
-
-
-
-                <p
-                class="anime-quote"
-                id="quoteText"
-                >
-
-                    "A lesson without pain is meaningless."
-
-                </p>
-
-            </div>
-
-        </div>
-
-
 
     </section>
 
