@@ -36,7 +36,15 @@ const quotes = [
 
     "Hard work beats talent.",
 
-    "The future belongs to those who keep moving."
+    "The future belongs to those who keep moving.",
+
+    "I have to work harder than anyone else to make it! I'll never catch up otherwise...!",
+
+    "Giving help that's not asked for... is what makes a true hero!" ,
+
+    "We'll take care of the things that you can't take care of." ,
+
+    "Stop talking. I will win. That's... what heroes do."
 
 ];
 
