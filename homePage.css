@@ -665,45 +665,45 @@
             margin-top: 10px;
         }
 
-        .leetcode-search{
+        .leetcode-search {
 
-    display: flex;
+            display: flex;
 
-    gap: 12px;
+            gap: 12px;
 
-    margin-bottom: 25px;
+            margin-bottom: 25px;
 
-    flex-wrap: wrap;
-}
-
-
-.leetcode-search input{
-
-    flex: 1;
-
-    padding: 14px;
-
-    border-radius: 14px;
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    outline: none;
-
-    background: rgba(255,255,255,0.05);
-
-    color: white;
-
-    font-size: 15px;
-}
+            flex-wrap: wrap;
+        }
 
 
-.leetcode-search input:focus{
+        .leetcode-search input {
 
-    border-color: #00ffae;
+            flex: 1;
 
-    box-shadow:
-    0 0 15px rgba(0,255,170,0.18);
-}
+            padding: 14px;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            outline: none;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            color: white;
+
+            font-size: 15px;
+        }
+
+
+        .leetcode-search input:focus {
+
+            border-color: #00ffae;
+
+            box-shadow:
+                0 0 15px rgba(0, 255, 170, 0.18);
+        }
 
 
         .leetcode-profile h1 {
@@ -831,6 +831,81 @@
             line-height: 1.7;
 
             color: #c6fff1;
+        }
+
+        .music-section {
+
+            margin-top: 40px;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            padding-top: 25px;
+        }
+
+
+        .music-title {
+
+            color: #00ffae;
+
+            margin-bottom: 18px;
+
+            font-size: 18px;
+
+            font-weight: 600;
+        }
+
+
+        .music-card {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .music-cover {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 16px;
+
+            object-fit: cover;
+
+            box-shadow:
+                0 0 20px rgba(0, 255, 170, 0.2);
+        }
+
+
+        .music-info h3 {
+
+            font-size: 18px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .music-info p {
+
+            color: #c6fff1;
+
+            font-size: 14px;
+        }
+
+
+        .anime-music {
+
+            width: 100%;
+
+            border-radius: 14px;
+
+            opacity: 0.9;
         }
 
 
